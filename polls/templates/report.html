@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<div id = "report_form">
+<h3>Create a new Report</h3>
+<form method="post" enctype="multipart/form-data" >
+ {% csrf_token %}
+{{form_info.as_ul}}
+<input type="submit" value="ok"/>
+</form>
+</div>
+{% endblock %}

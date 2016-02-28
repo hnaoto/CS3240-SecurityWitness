@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load staticfiles %}<script type="text/javascript" src ="{% static "js/script.js" %}"></script>
+{% load staticfiles %} <link rel="stylesheet" type="text/css" href="{% static "style_comments.css" %} ">
+
+
+<div id="wrapper"> 
+<div class="report-box">
+ <a class="close"> x </a>
+ <div class = "user-profile">
+{% load staticfiles %}<img class="avatar" src="{% static "images/avatar.png" %}" > </img>
+<div class="user">userfoo</div>
+</div>
+  <div class="content">
+	<div class="main">
+    
+    <h3 class="subject"> {{report.subject}}</h3> 
+         <div class="info-box">
+    	<span class="time">{{report.timestamp}}</span>
+        <span class="group">UVA Community, PHP Hater</span>
+      
+    </div>
+    <p class="short-descrpition">Short description: {{report.short_text}}</p>
+   
+
+    {% load staticfiles %}<img class="pic" src="{% static "images/lock_file.png" %}" > </img>
+
+    
+    </div>
+       	<a class="like">Like</a>
+    <div class="like-count"> 0 users like this report. </div>
+    	<div class="comment-box"> 
+    
+     						<ul class ="comment-list">
+                            <li class ="comment-list-content" user="self">
+                            <p class="comment-text"><span class="user">userfoo：</span>hi~</p>
+                            <p class="comment-time">
+                                2014-02-19 14:36
+                                <a href="javascript:;" class="comment-like" total="1" my="0" style="display: inline-block">1 like</a>
+                                <a href="javascript:;" class="comment-operate">reply</a>
+                            </p>
+                            </li>
+                            
+                            <li class ="comment-list-content" user="self">
+                            <p class="comment-text"><span class="user">userfoo2：</span>hi~~~</p>
+                            <p class="comment-time">
+                                2014-02-19 14:36
+                                <a href="javascript:;" class="comment-like" total="1" my="0" style="display: inline-block">1 like</a>
+                                <a href="javascript:;" class="comment-operate">reply</a>
+                            </p>
+                            </li>
+                            </ul>
+                      <div class="text-box">
+                     <textarea class="comment" autocomplete="off">Comments</textarea>
+                    <button class="btn">Reply</button>
+                    <span class="word"><span class="length">0</span>/140</span>
+                    </div>
+     
+         </div>
+  </div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+{% endblock %}

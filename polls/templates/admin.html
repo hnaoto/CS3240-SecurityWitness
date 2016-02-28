@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+
+<div id = "reports">
+
+<form method="POST">
+
+{% csrf_token %}
+<select name="group_select">
+<option value="-777" size="100" >-----------Group------------</option>
+{% for g in groups %}
+<option type= "select" value="{{g.id}}" > {{ g.name}}</option>
+{% endfor %}
+</select> 
+{% for u in users %}
+
+
+<!--<a href ="/reports/?detail={{post.id}}" ><p>  {{ post.subject }}  </p> </a> --> 
+<span><input type="checkbox" value="{{u.id}}" name="check_box_list"/> {{u}} 
+
+{% for a in u.groups.all %} 
+  {{a}} |
+ {% endfor %}
+{{ u.username }}
+
+</span>
+{% endfor %}
+
+
+
+<span><input type="submit" value="newadmin" name="button_list"  class="addAdmin"/>
+<input type="submit" value="suspend" name="button_list" class="suspend"/>
+<input type="submit" value="addtogroup" name="button_list" class="addGroup"/>
+<a href = "/group/new/"><input type="new_group"/ class="newReport"> </a>
+</span>
+
+
+
+
+</form>
+
+</div>
+{% endblock %}
+
+
