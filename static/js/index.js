@@ -16,6 +16,9 @@ $(document).ready(function() {
     'margin-top': -($('.intro').height() / 2)
   });
   
+	var $window = $(window);
+	var windowWidth = $window.width();
+	var leftdistance = (windowWidth -1100)/2 + "px";
 
 	
 
@@ -23,7 +26,7 @@ $(document).ready(function() {
 	$(".start_content ul li:first").click(function(){
 		$("html,body").animate({scrollTop: $("#content").offset().top}, 400), 
 		$("#content_form").fadeIn(1500);
-		$("#content_form ul").animate({left: "130px"},1000,'linear');
+		$("#content_form ul").animate({left:leftdistance},1000,'linear');
 	
 	});
 	
@@ -34,7 +37,7 @@ $(document).ready(function() {
 
 function showNextPanel() {
 		$("#content_form").fadeIn(1500);
-		$("#content_form ul").animate({left: "130px"},1000,'linear');
+		$("#content_form ul").animate({left:leftdistance},1000,'linear');
  
 	}
 	
@@ -52,7 +55,7 @@ function showNextPanel() {
 		if (windowpos>=banner.outerHeight()) {
 			nav.addClass('fixedTop');
 			$("#content_form").fadeIn(1500);
-			$("#content_form ul").animate({left: "130px"},1000,'linear');
+			$("#content_form ul").animate({left:leftdistance},1000,'linear');
  
 		}
 		
