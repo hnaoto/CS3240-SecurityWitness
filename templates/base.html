@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% load staticfiles %} <link rel="stylesheet" type="text/css" href="{% static "style_base.css" %} ">
+{% load staticfiles %} <link rel="shortcut icon" href="{% static "favi.ico" %}" /> 
+{% load staticfiles %}<script type="text/javascript" src="{% static "js/jquery.js" %}"></script> 
+{% load staticfiles %} <script type='text/javascript' src="{% static "js/jquery.particleground.min.js" %}"></script>
+{% load staticfiles %}<script type="text/javascript" src ="{% static "js/index.js" %}"></script>
+{% load staticfiles %}<script type="text/javascript" src ="{% static "js/rain.js" %}"></script>
+{% load staticfiles %}<script type="text/javascript" src ="{% static "js/search_kw.js" %}"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<title>{% block title %}My Base Template{% endblock %}</title>
+</head>
+
+
+
+<body>
+
+<script type="text/javascript">
+var s = window.screen;
+var width = q.width = s.width;
+var height = q.height = s.height;
+var letters = Array(256).join(1).split('');
+var draw = function () {
+q.getContext('2d').fillStyle='rgba(102,120,133,0.05)';
+q.getContext('2d').fillRect(0,0,width,height);
+q.getContext('2d').fillStyle='#FFFFFF';
+letters.map(function(y_pos, index){
+text = String.fromCharCode(34+Math.random()*33);
+x_pos = index * 10;
+q.getContext('2d').fillText(text, x_pos, y_pos);
+letters[index] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 10;
+q.getContext('2d').fillStyle='#FFFFFF';
+});
+};
+setInterval(draw, 33);
+</script>
+<header>
+<h1>CS3240 Demo </h1> 
+  
+            {% if user.is_authenticated %}
+             <ul class="user-status-tabs">
+            <li>Hi <p id = "username">{{full_name}}</p>,you are now logged in! </li>
+            <li><a href="/accounts/logout/">Log Out</a></li>
+            </ul>
+            {% else %}
+            <ul class="user-status-tabs">
+            <li><a href="/accounts/login/">Log in</a></li>
+            </ul>
+            {% endif %}
+      
+
+
+<div class="navMenu">
+<ul>
+	{% if user.is_staff %}
+    <li><a href="/">Home</a></li>
+    <li><a href="/reports/all/">All Reports</a></li>
+	<li><a href="/reports/list/">My Reports</a></li>
+	<li><a href="/accounts/admin/">Groups & Users</a></li>
+    <li><a href="/why/">Why SW</a></li>
+    {% else %}
+	<li><a href="/">Home</a></li>
+	<li><a href="/reports/all/">All Reports</a></li>
+	<li><a href="/reports/list/">My Reports</a></li>
+	<li><a href="/group/">My Groups</a></li>
+    <li><a href="/search/">Search</a></li>
+    <li><a href="/why/">Why SW</a></li>
+    {% endif %}
+</ul>
+</div><!-- ends sticker -->	
+</header>
+
+
+<div id ="particles"> </div>
+
+
+
+<div id= "content">
+
+<div id="wrapper"> 
+
+    
+    <div id="content_main">
+    
+	{% if messages %}
+	<ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+	</ul>
+	{% endif %}
+        
+        {% block content %}This is the content area{% endblock %}
+	
+
+	
+	</div>
+    
+ 
+
+</div>
+</div>
+
+
+<footer> 
+<div class ="wrapper">
+<ul class="f1">
+	<li>
+		<a href="" target="_blank" class="github"> </a>
+        Github
+	</li>
+	<li>
+		<a href="" title="" class="twitter"></a>
+        Twitter
+	</li>
+	<li>
+    	<a href="" title=""  class="youtube"></a>
+        Youtube
+	</li>
+	<li>
+		<a href="" title=""  class="groupme"></a>
+        Groupme
+	</li>
+</ul >
+
+<ul class = "f2"> 
+<li>UVA </li>
+<li>CS3240</li>
+<li> Project</li>
+<li> Django</li>
+</ul>
+
+
+<p>© Copyright None, no rights reserved. Credits to Django, Github octocat, Dropbox, Particleground, Cloudme </p> 
+</div>
+</footer>
+
+
+    
+    
+    
+    
+		
+</body>
+</html>

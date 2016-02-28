@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if error %}
+        <p style="color: red;">Please submit a search term.</p>
+    {% endif %}
+    <form action="/search/" method="get">
+        <input type="text" name="q" id="tags" size="50">
+        <span><input type="radio" value="subject" name="search_select" />subject</span>
+        <span><input type="radio" value="long_text" name="search_select" />long description</span>
+        <span><input type="radio" value="short_text" name="search_select" />short description</span>
+        <span><input type="radio" value="keywords" name="search_select" />keywords</span>
+        
+        <input type="submit" value="Search">
+    </form>
+    
+   
+<ul id="kwlist" style="display:none">
+{% for x in kwlist%}
+<li>{{x}}</li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+{% load staticfiles %}<link rel="stylesheet" type="text/css" href="{% static "style.css" %} ">
+{% load staticfiles %}<link rel="shortcut icon" href="{% static "favi.ico" %}" /> 
+{% load staticfiles %}<script type="text/javascript" src="{% static "js/jquery.js" %}"></script> 
+{% load staticfiles %}<script type='text/javascript' src="{% static "js/jquery.particleground.min.js" %}"></script>
+{% load staticfiles %}<script type="text/javascript" src ="{% static "js/index.js" %}"></script>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+ <script>
+$(function() {
+ $( "#opener" ).click(function() {
+$( "#dialog" ).dialog( );
+});
+
+});
+</script>
+<title>CS3240 Demo</title>
+</head>
+
+<body>
+
+
+
+<header>
+<h1>CS3240 Demo </h1> 
+
+<div class="navMenu">
+<ul>
+	<li><a href="#">Home</a></li>
+	<li><a href="#">LinkI</a></li>
+	<li><a href="#">LinkII</a></li>
+	<li><a href="#">LinkIII</a></li>
+</ul>
+</div><!-- ends sticker -->	
+</header>
+
+
+<div id ="particles"> </div>
+
+<div id = "wrapper">
+
+
+
+<div id = "login">
+<div id ="pic">{% load staticfiles %}<img src="{% static "images/index_pic_2.png" %}" width="550" height="530" /> </div>
+
+  <div id ="button">
+  <img src="{% static "images/index_ico.png" %}" width="110" height="110" />
+  <h2>Your secret, everywhere</h2>
+  <div  class = "start_content">  
+  <ul >
+  <li>Sign in</li>
+  <li><a href="#" id="opener">Sign up </a></li>
+
+  </ul>
+
+  
+  </div>
+    <div class = "start_button"> <p> Get Start</p> </div>
+  </div>
+
+  </div>
+</div>
+
+<div id= "content">
+<div id = "content_form">
+<div id = "log-in-form">
+<ul id="log-in">
+   <form action="/accounts/auth/" method="post">{% csrf_token %}
+   <li> <label for="username">User name:</label>
+    <input class="log-in-username-input" type="text" name="username" value="" id="username"> </li>
+  <li>  <label for="password">Password:</label>
+    <input class="log-password-input" type="password" name="password" value="" id="password"> </li>
+
+   <li> <input  class= "log-in-button" type="submit" value="login" /></li>
+    
+  </form>  
+</ul>
+</div>
+
+<div id ="register-form">
+<p>No account? Join now.</p>
+<div id="dialog" title="Register" style="display:none;">
+ 
+ <iframe src="accounts/register/" style="border:#FFF;height:300px;widht:300px"></iframe> </div> 
+</div>
+
+</div>
+
+
+
+</div>
+
+  <footer> 
+ 
+ 
+
+<div class ="wrapper">
+<ul class="f1">
+	<li>
+		<a href="" target="_blank" class="github"> </a>
+        Github
+	</li>
+	<li>
+		<a href="" title="" class="twitter"></a>
+        Twitter
+	</li>
+	<li>
+    	<a href="" title=""  class="youtube"></a>
+        Youtube
+	</li>
+	<li>
+		<a href="" title=""  class="groupme"></a>
+        Groupme
+	</li>
+</ul >
+
+<ul class = "f2"> 
+<li>UVA </li>
+<li>CS3240 Project</li>
+<li>Team VI</li>
+<li> Django</li>
+</ul>
+
+
+<p>© Copyright None, no rights reserved. Credits to Django, Github octocat, Dropbox, Particleground, Cloudme </p> 
+</div>
+</footer>
+ 
+
+</body>
+</html>

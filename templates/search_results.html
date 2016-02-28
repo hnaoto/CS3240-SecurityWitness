@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if Reports %}
+    <p>Found {{ Reports|length }} reports{{ Reports|pluralize }}.</p>
+    <ul>
+        {% for r in Reports %}
+        <a href="/reports/detail/{{r.id}}"> <li>{{ r.subject }}</li></a>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No reports matched your search criteria.</p>
+{% endif %}
+
+
+{% endblock %}

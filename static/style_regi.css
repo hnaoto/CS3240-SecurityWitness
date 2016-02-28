@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+
+
+body {
+	background-color:#FFF;
+	font-size: 13px;
+	margin: 0px;
+	padding: 0px;
+  font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+  overflow:hidden;
+
+
+	
+}
+
+
+#register_wrapper{
+	width:300px;
+	height:500px;
+}
+
+
+label, form, span{
+	display:block;	
+}
+
+
+

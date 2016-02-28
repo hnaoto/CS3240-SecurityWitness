@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div id = "reports">
+<h3>  {{ r.subject }}  </h3>
+<ul>
+<li>Short description:{{ r.short_text }}</li>
+<li>Long description: {{ r.long_text }} </li>
+<li>Keywords: {{r.kw}} </li>
+<li>Location: {{r.location}} </li>
+<a href = "/{{ MEDIA_URL }}{{r.file.url}}"><p>file  </p></a>
+{% if r.file2.url != None %}
+<a href = "/{{ MEDIA_URL }}{{r.file2.url}}"><p>file2  </p></a>
+{% endif %}
+{% if user.pk == r.user_id or user.is_staff %}
+<a href="/reports/delete/{{r.id}}" ><p> delete</p></a>
+{% endif %}
+{% if user.pk == r.user_id%}
+<a href="/reports/edit/{{r.id}}" ><p> edit</p></a>
+{% endif %}
+</ul>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<p>Without using SecureWitness, everyone could track your information online easily, even if they are not CIA... </p>
+<div id = "insPhoto">
+<ul id="imglist">
+
+</ul>
+</div>
+
+
+
+{% load staticfiles %}<script type="text/javascript" src="{% static "js/jquery.js" %}"></script> 
+<script type="text/javascript">
+$(function(){
+var GeoUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=UVA rice hall';
+var result ='';
+$.when(
+    $.ajax({type:'GET', url:GeoUrl,success: function(data){result = data;}})
+).then(function() {
+  var lat = result['results'][0]['geometry']['location']['lat'];
+  var lng = result['results'][0]['geometry']['location']['lng'];
+  var insUrl = 'https://api.instagram.com/v1/media/search?lat=' + lat + '&lng=' + lng + '&client_id=1c09bb7f505641e9bb5921d41dbd8d79';
+  //var imglist = [];
+ $.ajax({
+	    type: "POST",
+  		dataType: 'jsonp',
+	    url:insUrl,
+		success: function(raw){
+		
+			console.log(raw['data'][0]['images']['standard_resolution']['url']);
+			for (var i = 0; i < raw['data'].length; i++) {
+				//imglist.push(raw['data'][i]['images']['standard_resolution']['url']);			
+				var $li = $('<li></li>')
+				var $img = $('<img id="dynamic">'); //Equivalent: $(document.createElement('img'))
+			    $img.attr('src', raw['data'][i]['images']['standard_resolution']['url']);
+			    $li.append($img);
+			    $li.appendTo('#imglist');
+			}
+
+		}
+		});
+		
+	});
+});
+</script>
+
+{% endblock %}
