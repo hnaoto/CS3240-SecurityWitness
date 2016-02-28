@@ -11,12 +11,19 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-starlt development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -48,7 +55,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -57,8 +64,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/Users/trinity/Documents/work/cs3240/project/mysite/templates',
-                 '/Users/trinity/Documents/work/cs3240/project/mysite/polls/templates'
+        'DIRS': ['/C:/Users/Nithya/Documents/mysite/templates',
+                 '/C:/Users/Nithya/Documents/mysite/polls/templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -86,6 +93,11 @@ DATABASES = {
     }
 }
 
+# Parse database configuration from $DATABASE_URL
+DATABASES['default'] =  dj_database_url.config()
+
+# Enable Connection Pooling
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -104,14 +116,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
-UPLOAD_ROOT = '/upload/'
-UPLOAD_URL = '/upload/'
 
 #please change the resolute path here
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),'/var/www/static/','/Users/trinity/Documents/work/cs3240/project/mysite/static/']
-UPLOAD_DIRS = [os.path.join(BASE_DIR, "upload"),'/var/www/upload/','/Users/trinity/Documents/work/cs3240/project/mysite/upload/']
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),'/var/www/static/','/C:/Users/Nithya/Documents/mysite/static/']
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 
